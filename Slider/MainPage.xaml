@@ -1,24 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Slider.MainPage">
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+    <ContentPage Title="Your Pictures">
+        <StackLayout>
+            <CarouselView x:Name="imageCarousel"
+                          Margin="0,80,0,0">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid>
+                                <Frame Padding="0" 
+                                       BorderColor="White" 
+                                       CornerRadius="20">
+                                    <StackLayout>
+                                        <Label Text="{Binding ImageName}"
+                                               HorizontalTextAlignment="Center"
+                                               FontSize="20"
+                                               TextColor="Black"
+                                        />
+                                        <Image Source="{Binding ImageSource}" 
+                                               HeightRequest="500" 
+                                               Aspect="AspectFit"
+                                               Margin="0"
+                                               />
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
 
-</ContentPage>
+                            <Frame Padding="0" 
+                                   BackgroundColor="Transparent" 
+                                   Margin="20">
+
+                                <Button TextColor="Red" 
+                                        BorderColor="Red" 
+                                        BackgroundColor="White" 
+                                        BorderWidth="3" 
+                                        CornerRadius="90" 
+                                        Text="Delete Image"
+                                        Clicked="RemoveImage"
+                                        />
+                            </Frame>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <Button x:Name="toggleButton" 
+                    Text="Stop Auto Slide"
+                    TextColor="Red" 
+                    BorderColor="Red" 
+                    BackgroundColor="White" 
+                    BorderWidth="3" 
+                    CornerRadius="90" 
+                    Clicked="OnToggleButtonClicked"
+                    />
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="Add Picture">
+        <StackLayout Margin="0"
+                     Padding="0">
+            <Label Text="Add Image"
+                   HorizontalTextAlignment="Center"
+                   FontSize="20"
+                   TextColor="Black"/>
+            <Entry Placeholder="ImageSource" 
+                   x:Name="ImageSourceEntry"
+                   HorizontalTextAlignment="Center"
+                   Margin="20"
+                    />
+            <Entry Placeholder="ImageName"
+                   x:Name="ImageNameEntry"
+                   HorizontalTextAlignment="Center"
+                   Margin="20"
+                   />
+            <Button Text="Submit"
+                    TextColor="Red" 
+                    BorderColor="Red" 
+                    BackgroundColor="White" 
+                    BorderWidth="3" 
+                    CornerRadius="90"
+                    Clicked="AddImage"
+                    />
+        </StackLayout>
+    </ContentPage>
+
+</TabbedPage>
