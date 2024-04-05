@@ -5,7 +5,7 @@
 
     <ContentPage Title="Your Pictures">
         <StackLayout>
-            <CarouselView x:Name="imageCarousel"
+            <CarouselView x:Name="CarouselView_Images"
                           Margin="0,80,0,0">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
@@ -15,12 +15,12 @@
                                        BorderColor="White" 
                                        CornerRadius="20">
                                     <StackLayout>
-                                        <Label Text="{Binding ImageName}"
+                                        <Label Text="{Binding Name}"
                                                HorizontalTextAlignment="Center"
                                                FontSize="20"
                                                TextColor="Black"
                                         />
-                                        <Image Source="{Binding ImageSource}" 
+                                        <Image Source="{Binding Source}" 
                                                HeightRequest="500" 
                                                Aspect="AspectFit"
                                                Margin="0"
@@ -48,14 +48,14 @@
                 </CarouselView.ItemTemplate>
             </CarouselView>
 
-            <Button x:Name="toggleButton" 
+            <Button x:Name="Button_ToggleAutoSliding" 
                     Text="Stop Auto Slide"
                     TextColor="Red" 
                     BorderColor="Red" 
                     BackgroundColor="White" 
                     BorderWidth="3" 
                     CornerRadius="90" 
-                    Clicked="OnToggleButtonClicked"
+                    Clicked="ToggleAutoSliding"
                     />
         </StackLayout>
     </ContentPage>
@@ -68,12 +68,12 @@
                    FontSize="20"
                    TextColor="Black"/>
             <Entry Placeholder="ImageSource" 
-                   x:Name="ImageSourceEntry"
+                   x:Name="Entry_ImageSource"
                    HorizontalTextAlignment="Center"
                    Margin="20"
                     />
             <Entry Placeholder="ImageName"
-                   x:Name="ImageNameEntry"
+                   x:Name="Entry_ImageName"
                    HorizontalTextAlignment="Center"
                    Margin="20"
                    />
